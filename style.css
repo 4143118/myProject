@@ -1,0 +1,11 @@
+body{
+    margin:0;
+    /*I felt like the darker background could give more sense of immersion, and let users become more peaceful.*/
+    background: rgb(31, 34, 50);
+    /* To prevent users' drawing overflow full screen from scrolling so the full-screen canvas stays fixed*/
+    overflow: hidden;
+}
+
+canvas{
+    display:block;
+}
