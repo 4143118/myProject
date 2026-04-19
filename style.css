@@ -9,3 +9,10 @@ body{
 canvas{
     display:block;
 }
+
+/*intro modal dialog*/
+dialog[open] {
+    margin: auto;
+    padding: 1rem;
+    flex-direction: column;
+}
