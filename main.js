@@ -10,6 +10,7 @@ const ctx = canvas.getContext("2d");
 introDialog.showModal();
 
 dialogCloseButton.addEventListener("click", () => {
+    paused = false;
     introDialog.close();
 });
 
@@ -20,6 +21,7 @@ let particles = [];
 // State to track whether the user is currently holding mouse. And due to user just land in the page, they don't have
 // any actual movement yet, so the state is false.
 let inhaling = false;
+let  paused = false;
 
 // Store current mouse cursor position
 let mouseX = 0;
@@ -49,6 +51,7 @@ class Ring{
     draw(){
         ctx.beginPath();
         ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+        // Simple stroke keeps visual minimal and focuses on motion rather than detail
         ctx.strokeStyle = "white";
         ctx.lineWidth = 2;
         ctx.stroke();
@@ -133,6 +136,19 @@ window.addEventListener("keydown", (e)=>{
         });
     }
 
+// Press "TAB" to pause everything and reopen intro dialog
+    if(e.key === "Tab"){
+        e.preventDefault();
+
+        paused = !paused;
+
+        if(paused){
+            introDialog.showModal();
+        }else{
+            introDialog.close();
+        }
+    }
+
 });
 
 function animate(){
@@ -140,23 +156,27 @@ function animate(){
 // Clear canvas every frame
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
-    if(inhaling){
+    if(inhaling && !paused){
         ringTimer++;
         // Create a new ring every 15 frames
-        if(ringTimer % 15 === 0){
+        // Instead of creating a ring every frame, or it would be too fast and overwhelming,
+        // this allows rings to appear at a consistent interval, creating a breathing-like visual pacing.
+        if(ringTimer % 20 === 0){
             rings.push(new Ring(mouseX,mouseY));
         }
     }
 // Update and Draw rings and particles
     rings.forEach(r=>{
-        r.update();
+        if(!paused){
+            r.update();
+        }
         r.draw();
     });
 
     particles.forEach(p=>{
 
 // Move particle if it's allowed
-        if(p.moving && !p.locked){
+        if(p.moving && !p.locked && !paused){
             p.x += p.vx;
             p.y += p.vy;
         }
@@ -185,8 +205,9 @@ resizeCanvas();
 // Add an eventListener
 window.addEventListener("resize", resizeCanvas);
 
-// I used ChatGPT to debug the pressing "SPACE" to pause movement part.
 // At first, I didn't implement batches, and some parts of the code were written incorrectly, which caused this feature
 // to fail in certain situations.
 // I added a freeze all motion by pressing "Q" so that users can still pause the scene even if they miss the timing to
 // pause.
+
+// I used ChatGPT to debug the pressing "SPACE" to pause movement part.

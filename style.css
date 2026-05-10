@@ -1,18 +1,114 @@
 body{
+    cursor: pointer;
+
     margin:0;
+
     /*I felt like the darker background could give more sense of immersion, and let users become more peaceful.*/
     background: rgb(31, 34, 50);
+
     /* To prevent users' drawing overflow full screen from scrolling so the full-screen canvas stays fixed*/
     overflow: hidden;
+
+    font-family: sans-serif;
 }
 
 canvas{
     display:block;
 }
 
+
 /*intro modal dialog*/
+dialog{
+    border: none;
+    border-radius: 20px;
+    padding: 2rem;
+    width: 420px;
+    max-width: 80vw;
+    background: rgba(45, 49, 70, 0.9);
+    color: rgb(240,240,245);
+    text-align: left;
+    backdrop-filter: blur(20px);
+    box-shadow:
+            0 10px 40px rgb(19, 26, 43);
+}
+
 dialog[open] {
     margin: auto;
-    padding: 1rem;
+    display: flex;
     flex-direction: column;
+    gap: 1.2rem;
+    animation: fadeIn 0.4s ease;
+}
+
+/*dialog tittle*/
+dialog h1{
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1.2rem;
+    color: rgb(255, 255, 255);
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+/*dialog paragraph*/
+dialog p{
+    margin: 0;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: rgb(216, 216, 216);
+    font-family: sans-serif;
+    font-weight: normal;
+}
+
+
+/*dialog button*/
+dialog button{
+    border: none;
+    border-radius: 12px;
+    padding: 0.6rem 1.0rem;
+    background: rgb(88, 101, 242);
+    color: white;
+    font-size: 1rem;
+    font-family: sans-serif;
+    font-weight: bold;
+    transition:
+            transform 0.2s ease,
+            background 0.2s ease;
+
+}
+
+
+/*button hover interaction*/
+dialog button:hover{
+    background: rgb(71, 78, 200);
+    transform: translateY(-2px);
+}
+
+
+/*button click interaction*/
+dialog button:active{
+    transform: scale(0.98);
+}
+
+
+/*background behind dialog*/
+dialog::backdrop{
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(3px);
+}
+
+
+/*dialog opening animation*/
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to{
+        opacity: 1;
+
+        transform: translateY(0);
+    }
 }
