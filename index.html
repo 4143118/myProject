@@ -15,11 +15,12 @@
 <!--Intro dialog-->
 <dialog id="intro-dialog">
     <nav>
-        <button class="instruction active-tab" >Instruction</button>
-        <button class="settings" >Settings</button>
+        <button id = "instruction" class="instruction active-tab" >Instruction</button>
+        <button id = "settings" class="settings" >Settings</button>
     </nav>
 
-    <div class="dialog-content">
+  <div class="dialog-content">
+    <div id="instruction-panel">
         <h1> Let's Take Deep Breath Together!</h1>
         <p> Hold: inhale (generate rings)</p>
         <p> Release: start exhale</p>
@@ -27,8 +28,16 @@
         <p> Q: freeze everything</p>
         <p> R: clean the canvas</p>
         <p> Tab: reopen this dialogue</p>
-        <button type="button" class="dialog-close-button" autofocus>Nyeah~</button>
     </div>
+
+       <div id="settings-panel" class="hidden">
+         <div class="setting-row">
+            <span>Random Shape Mode</span>
+            <button id="shape-toggle" class="toggle-switch">OFF</button>
+         </div>
+       </div>
+      <button type="button" class="dialog-close-button" autofocus>Nyeah~</button>
+  </div>
 </dialog>
 
 <!--create a canvas to contain users' drawing-->

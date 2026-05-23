@@ -1,10 +1,27 @@
 // Set up intro dialog element
 const introDialog = document.getElementById("intro-dialog");
 const dialogCloseButton = document.querySelector(".dialog-close-button");
+const instructionButton = document.getElementById("instruction");
+const settingsButton = document.getElementById("settings");
+const instructionPanel = document.getElementById("instruction-panel");
+const settingsPanel = document.getElementById("settings-panel");
 
 // Set up canvas element and 2D drawing context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
+
+const shapeToggle = document.getElementById("shape-toggle");
+let randomShapeMode = false;
+
+shapeToggle.addEventListener("click", () => {
+    randomShapeMode = !randomShapeMode;
+    shapeToggle.classList.toggle("active");
+    if (randomShapeMode) {
+        shapeToggle.textContent = "ON";
+    }else{
+        shapeToggle.textContent = "OFF";
+    }
+})
 
 // show modal on page load
 introDialog.showModal();
@@ -13,6 +30,21 @@ dialogCloseButton.addEventListener("click", () => {
     paused = false;
     introDialog.close();
 });
+
+instructionButton.addEventListener("click", () => {
+    instructionButton.classList.add("active-tab");
+    settingsButton.classList.remove("active-tab");
+    instructionPanel.classList.remove("hidden");
+    settingsPanel.classList.add("hidden");
+})
+
+settingsButton.addEventListener("click", () => {
+    settingsButton.classList.add("active-tab");
+    instructionButton.classList.remove("active-tab");
+    settingsPanel.classList.remove("hidden");
+    instructionPanel.classList.add("hidden");
+})
+
 
 // Arrays to store rings and particles
 let rings = [];
@@ -161,7 +193,7 @@ function animate(){
         // Create a new ring every 15 frames
         // Instead of creating a ring every frame, or it would be too fast and overwhelming,
         // this allows rings to appear at a consistent interval, creating a breathing-like visual pacing.
-        if(ringTimer % 20 === 0){
+        if(ringTimer % 30 === 0){
             rings.push(new Ring(mouseX,mouseY));
         }
     }
