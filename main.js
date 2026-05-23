@@ -28,6 +28,18 @@ shapeToggle.addEventListener("click", () => {
         shapeToggle.textContent = "OFF";
     }
 })
+let lineColor = "rgb(255,255,255)"
+const paletteCards = document.querySelectorAll(".palette-card");
+
+paletteCards.forEach(card => {
+    card.addEventListener("click", () => {
+        document.body.style.background = card.dataset.bg;
+        lineColor = card.dataset.line;
+
+        paletteCards.forEach(c => c.classList.remove("selected"));
+        card.classList.add("selected");
+    });
+});
 
 // show modal on page load
 introDialog.showModal();
@@ -120,7 +132,7 @@ class Ring{
         }
         ctx.closePath();
         // Simple stroke keeps visual minimal and focuses on motion rather than detail
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = lineColor;
         ctx.lineWidth = 2;
         ctx.stroke();
     }
@@ -254,7 +266,7 @@ function animate(){
 // Draw particles as small dot
         ctx.beginPath();
         ctx.arc(p.x,p.y,2,0,Math.PI*2);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = lineColor;
         ctx.fill();
     });
 // Loop animation
