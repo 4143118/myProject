@@ -165,7 +165,7 @@ canvas.addEventListener("mouseup", ()=>{
 // This part was so tricky for me, so I have to seek help from ChatGPT. I asked it to give me some ways to solve
 // this part, and asked it to explain the ways it gave me.
     rings.forEach(r=>{
-        for(let angle = 0; angle < Math.PI*2; angle += 0.2) {
+        for(let angle = 0; angle < Math.PI*2; angle += 0.1) {
             let radius = r.radius;
             let index = Math.floor(
                 angle / (Math.PI * 2) * r.randomOffsets.length
