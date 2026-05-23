@@ -224,3 +224,27 @@ dialog::backdrop{
     background: rgb(97, 110, 255);
     transform: scale(0.98);
 }
+
+#help-button{
+    position: fixed;
+    left: 2rem;
+    bottom: 2rem;
+    z-index: 10;
+    width: 90px;
+    height: 42px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(88, 101, 242, 0.9);
+    color: rgb(240,240,245);
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+#help-button:hover{
+    background: rgb(71, 78, 200);
+    transform: translateY(-2px);
+}
+#help-button:active{
+    transform: scale(0.98);
+}

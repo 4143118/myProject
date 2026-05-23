@@ -6,6 +6,12 @@ const settingsButton = document.getElementById("settings");
 const instructionPanel = document.getElementById("instruction-panel");
 const settingsPanel = document.getElementById("settings-panel");
 
+const helpButton = document.getElementById("help-button");
+helpButton.addEventListener("click", function() {
+    paused = true;
+    introDialog.showModal();
+})
+
 // Set up canvas element and 2D drawing context
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -72,17 +78,47 @@ class Ring{
         this.y = y;
         this.radius = 10;
         this.growing = true;
+        this.randomOffsets = [];
+        for (let i = 0; i < 140; i++) {
+            let offset =
+                Math.sin(i * 0.34) * 7 +
+                Math.sin(i * 0.12) * 6 +
+                (Math.random() * 2 - 1);
+
+            this.randomOffsets.push(offset);
+        }
     }
 // expanding, update ring size
     update(){
+
+        let growthSpeed = 1.5;
+
+        if(randomShapeMode){
+            growthSpeed = 1.2;
+        }
+
         if(this.growing){
-            this.radius += 1.5;
+            this.radius += growthSpeed;
         }
     }
 // Draw ring on canvas
     draw(){
         ctx.beginPath();
-        ctx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+        for (let i = 0; i<= this.randomOffsets.length; i++){
+            let angle = (i / this.randomOffsets.length) * Math.PI * 2;
+            let radius = this.radius;
+            if(randomShapeMode){
+                radius += this.randomOffsets[i % this.randomOffsets.length];
+            }
+            let x = this.x + Math.cos(angle) * radius;
+            let y = this.y + Math.sin(angle) * radius;
+            if(i === 0){
+                ctx.moveTo(x, y);
+            }else{
+                ctx.lineTo(x, y);
+            }
+        }
+        ctx.closePath();
         // Simple stroke keeps visual minimal and focuses on motion rather than detail
         ctx.strokeStyle = "white";
         ctx.lineWidth = 2;
@@ -117,22 +153,25 @@ canvas.addEventListener("mouseup", ()=>{
 // This part was so tricky for me, so I have to seek help from ChatGPT. I asked it to give me some ways to solve
 // this part, and asked it to explain the ways it gave me.
     rings.forEach(r=>{
-        for(let angle = 0; angle < Math.PI*2; angle += 0.1){
-// Calculate particle positon along the ring
-            let x = r.x + Math.cos(angle) * r.radius;
-            let y = r.y + Math.sin(angle) * r.radius;
+        for(let angle = 0; angle < Math.PI*2; angle += 0.2) {
+            let radius = r.radius;
+            let index = Math.floor(
+                angle / (Math.PI * 2) * r.randomOffsets.length
+            );
+            if (randomShapeMode) {
+                radius += r.randomOffsets[index];
+            }
+            let x = r.x + Math.cos(angle) * radius;
+            let y = r.y + Math.sin(angle) * radius;
 
             particles.push({
                 x: x,
                 y: y,
-// Velocity outward from center
                 vx: Math.cos(angle) * 0.3,
                 vy: Math.sin(angle) * 0.3,
                 moving: true,
-// Assign to current batch
                 batch: currentBatch,
-// Whether permanently frozen by press "Q"
-                locked: false
+                locked: false,
             });
         }
     });
@@ -193,7 +232,7 @@ function animate(){
         // Create a new ring every 15 frames
         // Instead of creating a ring every frame, or it would be too fast and overwhelming,
         // this allows rings to appear at a consistent interval, creating a breathing-like visual pacing.
-        if(ringTimer % 30 === 0){
+        if(ringTimer % 45 === 0){
             rings.push(new Ring(mouseX,mouseY));
         }
     }
@@ -243,3 +282,5 @@ window.addEventListener("resize", resizeCanvas);
 // pause.
 
 // I used ChatGPT to debug the pressing "SPACE" to pause movement part.
+
+
