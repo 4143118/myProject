@@ -1,6 +1,6 @@
 // Set up intro dialog element
 const introDialog = document.getElementById("intro-dialog");
-const dialogCloseButton = document.getElementById("dialog-close-button");
+const dialogCloseButton = document.querySelector(".dialog-close-button");
 
 // Set up canvas element and 2D drawing context
 const canvas = document.getElementById("canvas");
