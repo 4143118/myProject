@@ -12,13 +12,13 @@
 </head>
 <body>
 
-<!--Intro dialog-->
+<!--Intro dialog with a global navigation menu-->
 <dialog id="intro-dialog">
     <nav>
         <button id = "instruction" class="instruction active-tab" >Instruction</button>
         <button id = "settings" class="settings" >Settings</button>
     </nav>
-
+<!--Instruction-->
   <div class="dialog-content">
     <div id="instruction-panel">
         <h1> Let's Take Deep Breath Together!</h1>
@@ -29,7 +29,7 @@
         <p> R: clean the canvas</p>
         <p> Tab: reopen this dialogue</p>
     </div>
-
+<!--Settings with sound control, irregular shape mode, and color palettes-->
        <div id="settings-panel" class="hidden">
            <div class="setting-row">
             <span>Background Music</span>
@@ -74,8 +74,13 @@
 <!--create a canvas to contain users' drawing-->
 <canvas id="canvas"></canvas>
 
+<!--create a help button on the canvas, then it will be easier for user to learn-->
 <button id="help-button" type="button">Help</button>
 
+<!--https://www.freesound.org/people/Muyo5438/sounds/718704/
+    Atmospheric Landscape for Meditation Relaxation and Yoga by Muyo5438 -- https://freesound.org/s/718704/ -- License:
+    Attribution 4.0
+    -->
 <audio id="bg-music" src="source/meditation-2.mp3" loop></audio>
 
 

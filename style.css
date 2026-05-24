@@ -1,3 +1,6 @@
+/*I want a harmony style, so every text is in same color, and keep button's color in same color when they in the
+active state.*/
+
 body{
     cursor: pointer;
     margin:0;
@@ -32,6 +35,8 @@ dialog{
             0 10px 40px rgb(19, 26, 43);
 }
 
+/*I want to create a left right form for this menu*/
+/*I have tried vertical layout, not that satisfying, and give me a sense of crowded*/
 nav{
     display: flex;
     flex-direction: column;
@@ -40,6 +45,7 @@ nav{
     border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/*I am used to give css animation to each button in my project, just for making interaction more smooth. */
 nav button{
     border: none;
     border-radius: 14px;
@@ -54,6 +60,7 @@ nav button{
     position: relative;
 }
 
+/* hover state for nav button*/
 nav button:hover{
     background: rgba(3, 6, 23, 0.13);
     color: rgb(240,240,245);
@@ -92,6 +99,7 @@ dialog[open] {
     width: 100%;
 }
 
+/*h1 use bold, para use normal, so we can have an visual order*/
 /*dialog tittle*/
 dialog h1{
     margin: 0 0 2.6rem 0;
@@ -167,6 +175,7 @@ dialog::backdrop{
     }
 }
 
+
 .active-tab::before{
     content: "";
     position: absolute;
@@ -188,13 +197,14 @@ dialog::backdrop{
     background: rgba(255,255,255,0.05);
     color:white;
     transform:none;
-    cursor:default;
 }
 
+/*hidden setting panel*/
 .hidden{
     display: none;
 }
 
+/*keep text and button on the same line, and fit the container suitable */
 .setting-row{
     display: flex;
     justify-content: space-between;
@@ -204,6 +214,7 @@ dialog::backdrop{
     font-weight: bold;
 }
 
+/*give style to different states of toggle*/
 .toggle-switch{
     width: 130px;
     height: 35px;
@@ -226,6 +237,7 @@ dialog::backdrop{
     transform: scale(0.98);
 }
 
+/*help button style, keep it in the left bottom, then use the themed color. */
 #help-button{
     position: fixed;
     left: 2rem;
@@ -239,7 +251,6 @@ dialog::backdrop{
     color: rgb(240,240,245);
     font-size: 1rem;
     font-weight: bold;
-    cursor: pointer;
     transition: background 0.25s ease, transform 0.25s ease;
 }
 #help-button:hover{
@@ -250,6 +261,7 @@ dialog::backdrop{
     transform: scale(0.98);
 }
 
+/*color setting part*/
 .color-setting{
     display: flex;
     flex-direction: column;
@@ -273,7 +285,6 @@ dialog::backdrop{
     border:2px solid transparent;
     border-radius:10px;
     background: rgba(255,255,255,.08);
-    cursor:pointer;
     margin-top: 1rem;
 }
 
@@ -287,3 +298,5 @@ dialog::backdrop{
     border-color: white;
 }
 
+/*I used ChatGPT for debugging
+I found out a bug which is */

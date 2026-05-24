@@ -1,4 +1,4 @@
-// Set up intro dialog element
+// Set up element
 const introDialog = document.getElementById("intro-dialog");
 const dialogCloseButton = document.querySelector(".dialog-close-button");
 const instructionButton = document.getElementById("instruction");
@@ -8,11 +8,14 @@ const settingsPanel = document.getElementById("settings-panel");
 const bgMusic = document.getElementById("bg-music");
 const musicToggleButton = document.getElementById("music-toggle");
 
+// I felt the original audio was too loud, so lower it a bit
 bgMusic.volume = 0.6;
 
+// set up
 let musicOn = true;
 let musicStarted = false;
 
+// here is for the help button function, user click it then show the dialog
 const helpButton = document.getElementById("help-button");
 helpButton.addEventListener("click", function() {
     paused = true;
@@ -23,6 +26,7 @@ helpButton.addEventListener("click", function() {
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+// irregular shape mode toggle function, switch toggle
 const shapeToggle = document.getElementById("shape-toggle");
 let randomShapeMode = false;
 
@@ -36,6 +40,9 @@ shapeToggle.addEventListener("click", () => {
     }
 })
 
+//music toggle
+// I found that if the user adjusts the music toggle before they click the nyeah key for the first time, the music will
+// play. This is a bug. then I seeked help from ChatGPT to teach me how to solve this issue.
 musicToggleButton.addEventListener("click", ()=>{
     musicOn = !musicOn;
     musicToggleButton.classList.toggle(
