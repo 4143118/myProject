@@ -58,6 +58,7 @@ musicToggleButton.addEventListener("click", ()=>{
     }
     });
 
+// for color palette selector, logic to apply color
 let lineColor = "rgb(255,255,255)"
 const paletteCards = document.querySelectorAll(".palette-card");
 
@@ -85,6 +86,7 @@ dialogCloseButton.addEventListener("click", () => {
     });
 });
 
+// switch nav button
 instructionButton.addEventListener("click", () => {
     instructionButton.classList.add("active-tab");
     settingsButton.classList.remove("active-tab");
