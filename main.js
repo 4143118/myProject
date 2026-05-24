@@ -331,4 +331,6 @@ window.addEventListener("resize", resizeCanvas);
 
 // I used ChatGPT to debug the pressing "SPACE" to pause movement part.
 
+// I Used ChatGPT to help me finish irreguler shape mode, so hard in math.
+
 
