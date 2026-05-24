@@ -5,6 +5,13 @@ const instructionButton = document.getElementById("instruction");
 const settingsButton = document.getElementById("settings");
 const instructionPanel = document.getElementById("instruction-panel");
 const settingsPanel = document.getElementById("settings-panel");
+const bgMusic = document.getElementById("bg-music");
+const musicToggleButton = document.getElementById("music-toggle");
+
+bgMusic.volume = 0.6;
+
+let musicOn = true;
+let musicStarted = false;
 
 const helpButton = document.getElementById("help-button");
 helpButton.addEventListener("click", function() {
@@ -28,6 +35,22 @@ shapeToggle.addEventListener("click", () => {
         shapeToggle.textContent = "OFF";
     }
 })
+
+musicToggleButton.addEventListener("click", ()=>{
+    musicOn = !musicOn;
+    musicToggleButton.classList.toggle(
+        "active"
+    );
+    musicToggleButton.textContent =
+        musicOn ? "ON" : "OFF";
+    if(!musicOn){
+        bgMusic.pause();
+    }
+    else if(musicStarted){
+        bgMusic.play();
+    }
+    });
+
 let lineColor = "rgb(255,255,255)"
 const paletteCards = document.querySelectorAll(".palette-card");
 
@@ -45,8 +68,14 @@ paletteCards.forEach(card => {
 introDialog.showModal();
 
 dialogCloseButton.addEventListener("click", () => {
-    paused = false;
-    introDialog.close();
+    dialogCloseButton.addEventListener("click", ()=>{
+        paused = false;
+        introDialog.close();
+        if(musicOn){
+            bgMusic.play();
+            musicStarted = true;
+        }
+    });
 });
 
 instructionButton.addEventListener("click", () => {

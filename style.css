@@ -200,7 +200,7 @@ dialog::backdrop{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin: 0 0 1rem 0;
+    margin: 0 0 1.3rem 0;
     font-weight: bold;
 }
 
@@ -256,13 +256,13 @@ dialog::backdrop{
     align-items: flex-start;
     gap: 0.8rem;
     justify-content: flex-start;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
 }
 
 .palette-list{
     display: grid;
     grid-template-columns: repeat(2, 160px);
-    gap: 1rem 1.2rem;
+    gap: 1rem 2.3rem;
 }
 
 .palette-card{
@@ -274,7 +274,7 @@ dialog::backdrop{
     border-radius:10px;
     background: rgba(255,255,255,.08);
     cursor:pointer;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .palette-card span{
@@ -286,3 +286,4 @@ dialog::backdrop{
 .palette-card.selected{
     border-color: white;
 }
+
